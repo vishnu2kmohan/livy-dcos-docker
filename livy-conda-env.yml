@@ -1,0 +1,9 @@
+name: livy
+prefix: /home/conda/conda/envs/livy
+channels:
+- conda-forge
+dependencies:
+- openjdk
+- maven
+- pyspark
+- pyarrow

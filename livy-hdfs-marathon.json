@@ -1,0 +1,83 @@
+{
+  "id": "/livy",
+  "instances": 1,
+  "cpus": 4,
+  "mem": 4096,
+  "cmd": "env | sort && sed \"s/__LIVY_SERVER_PORT__/$PORT_LIVY/g\" $MESOS_SANDBOX/livy-mesos-client.conf > $HOME/livy/conf/livy.conf && /usr/local/bin/livy.sh",
+  "networks": [
+    {
+      "mode": "host"
+    }
+  ],
+  "container": {
+    "type": "MESOS",
+    "docker": {
+      "image": "vishnumohan/livy-dcos:0.4.0-1.10.2-2.2.0",
+      "forcePullImage": false
+    }
+  },
+  "fetch": [
+    {
+      "uri": "https://s3.amazonaws.com/vishnu-mohan/livy/livy-mesos-client.conf",
+      "extract": false,
+      "executable": false,
+      "cache": false
+    },
+    {
+      "uri": "http://api.hdfs.marathon.l4lb.thisdcos.directory/v1/endpoints/hdfs-site.xml",
+      "extract": false,
+      "executable": false,
+      "cache": false
+    },
+    {
+      "uri": "http://api.hdfs.marathon.l4lb.thisdcos.directory/v1/endpoints/core-site.xml",
+      "extract": false,
+      "executable": false,
+      "cache": false
+    }
+  ],
+  "env": {
+    "HADOOP_CONF_DIR": "/mnt/mesos/sandbox",
+    "LD_LIBRARY_PATH": "/opt/mesosphere/libmesos-bundle/lib/:$LD_LIBRARY_PATH",
+    "LIVY_SERVER_JAVA_OPTS": "-Xms512m -Xmx512m -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -XX:+PrintPromotionFailure -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -Xloggc:{{MESOS_SANDBOX}}/gc.log",
+    "MESOS_NATIVE_LIBRARY": "/opt/mesosphere/libmesos-bundle/lib/libmesos.so",
+    "MESOS_NATIVE_JAVA_LIBRARY": "/opt/mesosphere/libmesos-bundle/lib/libmesos.so",
+    "TERM": "xterm-256color"
+  },
+  "labels": {
+    "MARATHON_SINGLE_INSTANCE_APP": "true",
+    "DCOS_PACKAGE_METADATA": "eyJpbWFnZXMiOnsiaWNvbi1zbWFsbCI6Imh0dHBzOi8vbGl2eS5pbmN1YmF0b3IuYXBhY2hlLm9yZy9hc3NldHMvdGhlbWVzL2FwYWNoZS9pbWcvbG9nby5wbmciLCJpY29uLW1lZGl1bSI6Imh0dHBzOi8vbGl2eS5pbmN1YmF0b3IuYXBhY2hlLm9yZy9hc3NldHMvdGhlbWVzL2FwYWNoZS9pbWcvbG9nby5wbmciLCJpY29uLWxhcmdlIjoiaHR0cHM6Ly9saXZ5LmluY3ViYXRvci5hcGFjaGUub3JnL2Fzc2V0cy90aGVtZXMvYXBhY2hlL2ltZy9sb2dvLnBuZyJ9fQo=",
+    "DCOS_SERVICE_NAME": "livy",
+    "DCOS_SERVICE_PORT_INDEX": "0",
+    "DCOS_SERVICE_SCHEME": "http"
+  },
+  "portDefinitions": [
+    {
+      "port": 0,
+      "protocol": "tcp",
+      "name": "livy",
+      "labels": {
+        "VIP_0": "/livy:8998"
+      }
+    }
+  ],
+  "healthChecks": [
+    {
+      "protocol": "MESOS_HTTP",
+      "path": "/sessions",
+      "portIndex": 0,
+      "gracePeriodSeconds": 60,
+      "intervalSeconds": 20,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+  "upgradeStrategy": {
+    "minimumHealthCapacity": 0,
+    "maximumOverCapacity": 0
+  },
+  "unreachableStrategy": {
+    "expungeAfterSeconds": 0,
+    "inactiveAfterSeconds": 0
+  }
+}
