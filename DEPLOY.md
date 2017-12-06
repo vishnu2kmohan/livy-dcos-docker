@@ -33,7 +33,7 @@ curl -O https://raw.githubusercontent.com/vishnu2kmohan/beakerx-dcos-docker/mast
 Edit and set the value of the `HAPROXY_0_VHOST` label to the hostname (or ideally, a unique CNAME) of the loadbalancer fronting the public agent(s) where Marathon-LB is installed. 
 
 ```bash
-dcos marathon app add beakerx-marathon.json
+dcos marathon app add beakerx-sparkmagic-marathon.json
 ```
 
 Note: The default sparkmagic [config.json](https://s3.amazonaws.com/vishnu-mohan/sparkmagic/sparkmagic-dcos-config.json) may be modified and rehosted on a webserver to suit your specific needs. Modify the [uri](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/beakerx-sparkmagic-marathon.json#L16) to point to its location on your webserver.
@@ -48,7 +48,7 @@ If you modified and deployed the app into a folder, e.g., `/foo/bar/beakerx` the
 
 Ref: [Jupyter Notebook Password Provisioning](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/jupyter_notebook_config.py#L23-L27)
 
-## Start a `PySpark3` notebook from the JupyterLab launched and paste the following code into a cell
+## Start a `PySpark3` Notebook from the JupyterLab Launcher and paste the following code into a cell
 
 ### SparkPi
 
@@ -69,7 +69,7 @@ count = sc.parallelize(range(1, n + 1), partitions).map(f).reduce(add)
 print("Pi is roughly %f" % (4.0 * count / n))
 ```
 
-`Ctrl-Enter` to execute the code in the cell, which will trigger [sparkmagic](https://s3.amazonaws.com/vishnu-mohan/sparkmagic/sparkmagic-dcos-config.json) to [communicate](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/sparkmagic-dcos-config.json) with Apache Livy where its [livy.conf]() has been [configured](https://github.com/vishnu2kmohan/livy-dcos-docker/blob/master/livy-mesos-client.conf#L35) to spawn Spark Executors on your Mesosphere DC/OS cluster.
+`Ctrl-Enter` to execute the code in the cell, which will trigger [sparkmagic](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/sparkmagic-dcos-config.json#L49-L63) to [communicate](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/sparkmagic-dcos-config.json#L49-L63) with Apache Livy whose `livy.conf` has been [configured](https://github.com/vishnu2kmohan/livy-dcos-docker/blob/master/livy-mesos-client.conf#L35) to spawn Spark Executors on your Mesosphere DC/OS cluster.
 
 ## References
 
