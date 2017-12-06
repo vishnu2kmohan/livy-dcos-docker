@@ -26,7 +26,7 @@
   ],
   "env": {
     "LD_LIBRARY_PATH": "/opt/mesosphere/libmesos-bundle/lib/:${LD_LIBRARY_PATH}",
-    "LIVY_SERVER_JAVA_OPTS": "-Xms512m -Xmx512m -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -XX:+PrintPromotionFailure -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -Xloggc:${MESOS_SANDBOX}/gc.log",
+    "LIVY_SERVER_JAVA_OPTS": "-Xms512m -Xmx512m -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -XX:+PrintPromotionFailure -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -Xloggc:/mnt/mesos/sandbox/gc.log",
     "MESOS_NATIVE_LIBRARY": "/opt/mesosphere/libmesos-bundle/lib/libmesos.so",
     "MESOS_NATIVE_JAVA_LIBRARY": "/opt/mesosphere/libmesos-bundle/lib/libmesos.so",
     "TERM": "xterm-256color"
