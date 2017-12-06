@@ -1,4 +1,4 @@
-# Interactive Spark with JupyterLab and Apache Livy on Mesosphere DC/OS
+# Interactive Apache Spark with JupyterLab and Apache Livy on Mesosphere DC/OS
 
 ## Prerequisites
 
@@ -73,6 +73,7 @@ print("Pi is roughly %f" % (4.0 * count / n))
 
 ## References
 
+- [Apache Spark](https://spark.apache.org)
 - [Apache Livy](https://livy.incubator.apache.org)
 - [Apache Livy for Mesosphere DC/OS GitHub Repo](https://github.com/vishnu2kmohan/livy-dcos-docker)
 - [Apache Livy for Mesosphere DC/OS Docker Image](https://hub.docker.com/r/vishnumohan/livy-dcos)
