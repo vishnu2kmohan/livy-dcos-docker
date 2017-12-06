@@ -69,7 +69,7 @@ count = sc.parallelize(range(1, n + 1), partitions).map(f).reduce(add)
 print("Pi is roughly %f" % (4.0 * count / n))
 ```
 
-`Ctrl-Enter` to execute the code in the cell, which will trigger [sparkmagic](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/sparkmagic-dcos-config.json#L2-L19) to [communicate](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/sparkmagic-dcos-config.json#L49-L63) with Apache Livy whose `livy.conf` has been [configured](https://github.com/vishnu2kmohan/livy-dcos-docker/blob/master/livy-mesos-client.conf#L35) to spawn Spark Executors on your Mesosphere DC/OS cluster.
+`Ctrl-Enter` to execute the code in the cell, which will trigger [sparkmagic](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/sparkmagic-dcos-config.json#L49-L63) to [communicate](https://github.com/vishnu2kmohan/beakerx-dcos-docker/blob/master/sparkmagic-dcos-config.json#L2-L19) with Apache Livy whose `livy.conf` has been [configured](https://github.com/vishnu2kmohan/livy-dcos-docker/blob/master/livy-mesos-client.conf#L35) to spawn Spark Executors on your Mesosphere DC/OS cluster.
 
 ## References
 
