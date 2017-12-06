@@ -85,5 +85,5 @@ print("Pi is roughly %f" % (4.0 * count / n))
 - [Conda](https://conda.io)
 - [Miniconda3 Docker GitHub Repo](https://github.com/vishnu2kmohan/miniconda3-docker)
 - [Miniconda3 Docker Image](https://hub.docker.com/r/vishnumohan/miniconda3)
-- [Debian](https://www.debian.org
+- [Debian](https://www.debian.org)
 - [debian:jessie Docker Image](https://hub.docker.com/r/library/debian)
