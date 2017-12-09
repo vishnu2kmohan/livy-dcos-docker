@@ -3,7 +3,7 @@
   "instances": 1,
   "cpus": 4,
   "mem": 4096,
-  "cmd": "env | sort && sed \"s/__LIVY_SERVER_PORT__/${PORT_LIVY}/g\" ${MESOS_SANDBOX}/livy-mesos-client.conf > ${HOME}/livy/conf/livy.conf && /usr/local/bin/livy.sh",
+  "cmd": "sed \"s/__LIVY_SERVER_PORT__/${PORT_LIVY}/g\" ${MESOS_SANDBOX}/livy-mesos-client.conf > ${HOME}/livy/conf/livy.conf && /usr/local/bin/livy.sh",
   "networks": [
     {
       "mode": "host"
