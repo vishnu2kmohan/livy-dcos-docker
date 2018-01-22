@@ -12,7 +12,7 @@
   "container": {
     "type": "MESOS",
     "docker": {
-      "image": "vishnumohan/livy-dcos:0.4.0-1.10.2-2.2.0",
+      "image": "vishnumohan/livy-dcos:0.4.0-1.10.4-2.2.1",
       "forcePullImage": false
     }
   },
@@ -38,8 +38,7 @@
   ],
   "env": {
     "HADOOP_CONF_DIR": "/mnt/mesos/sandbox",
-    "LD_LIBRARY_PATH": "/opt/mesosphere/libmesos-bundle/lib/:${LD_LIBRARY_PATH}",
-    "LIVY_SERVER_JAVA_OPTS": "-Xms512m -Xmx512m -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -XX:+PrintPromotionFailure -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -Xloggc:/mnt/mesos/sandbox/gc.log",
+    "LD_LIBRARY_PATH": "/opt/mesosphere/libmesos-bundle/lib",
     "MESOS_NATIVE_LIBRARY": "/opt/mesosphere/libmesos-bundle/lib/libmesos.so",
     "MESOS_NATIVE_JAVA_LIBRARY": "/opt/mesosphere/libmesos-bundle/lib/libmesos.so",
     "TERM": "xterm-256color"
@@ -47,9 +46,9 @@
   "labels": {
     "MARATHON_SINGLE_INSTANCE_APP": "true",
     "DCOS_PACKAGE_METADATA": "eyJpbWFnZXMiOnsiaWNvbi1zbWFsbCI6Imh0dHBzOi8vbGl2eS5pbmN1YmF0b3IuYXBhY2hlLm9yZy9hc3NldHMvdGhlbWVzL2FwYWNoZS9pbWcvbG9nby5wbmciLCJpY29uLW1lZGl1bSI6Imh0dHBzOi8vbGl2eS5pbmN1YmF0b3IuYXBhY2hlLm9yZy9hc3NldHMvdGhlbWVzL2FwYWNoZS9pbWcvbG9nby5wbmciLCJpY29uLWxhcmdlIjoiaHR0cHM6Ly9saXZ5LmluY3ViYXRvci5hcGFjaGUub3JnL2Fzc2V0cy90aGVtZXMvYXBhY2hlL2ltZy9sb2dvLnBuZyJ9fQo=",
-    "DCOS_SERVICE_NAME": "livy",
-    "DCOS_SERVICE_PORT_INDEX": "0",
-    "DCOS_SERVICE_SCHEME": "http"
+    "HAPROXY_0_ENABLED": "true",
+    "HAPROXY_0_REDIRECT_TO_HTTPS": "true",
+    "HAPROXY_0_VHOST": "vhost.example.com"
   },
   "portDefinitions": [
     {
